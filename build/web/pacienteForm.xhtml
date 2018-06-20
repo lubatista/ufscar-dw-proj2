@@ -13,7 +13,7 @@
         <h:form>
             Digite seus dados:<br/>
             CPF:
-            <h:inputText id="cpf" label="Cpf" required="true" value="#{novoPaciente.dadosPaciente.paciente.cpf}" />
+            <h:inputText id="cpf" label="Cpf" required="true" value="#{novoPaciente.dadosPaciente.cpf}" />
             <h:message for="cpf"/>
             <br/>
             
@@ -28,7 +28,7 @@
             <br/>
 
             Data de nascimento:
-            <h:inputText id="dataDeNascimento" label="Data de nascimento" value="#{novoPaciente.dadosPaciente.dataDeNascimento}">
+            <h:inputText id="dataDeNascimento" label="Data de nascimento" value="#{novoPaciente.dadosPaciente.datanasc}">
                 <f:convertDateTime type="date" pattern="dd/MM/yyyy" />
             </h:inputText>
             <h:message for="dataDeNascimento"/>
@@ -44,7 +44,7 @@
             <h:message for="senha"/>
             <br/>
 
-            <h:commandButton id="submit" value="Submit" action="confirmarPaciente" />
+           <h:commandButton id="submit" value="Submit" action="#{novoPaciente.salvar()}" />
         </h:form>    
     </h:body>
 </html>
