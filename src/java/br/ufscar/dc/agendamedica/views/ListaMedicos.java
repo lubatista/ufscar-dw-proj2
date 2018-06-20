@@ -24,6 +24,9 @@ import javax.naming.NamingException;
 public class ListaMedicos implements Serializable {
 
     List<Medico> listaMedicos;
+    
+    String especialidade;
+    
     @Inject
     MedicoDAO medicoDAO;
 
@@ -41,6 +44,14 @@ public class ListaMedicos implements Serializable {
         listaMedicos = medicoDAO.listarTodosMedicos();
         return "listaMedicos";
     }
+    
+    public void setEspecialidade(String especialidade) {
+        this.especialidade = especialidade;
+    }
+
+    public String getEspecialidade() {
+        return especialidade;
+    }
 
     public List<Medico> getMedicosFiltrados() {
         return medicosFiltrados;
@@ -49,9 +60,9 @@ public class ListaMedicos implements Serializable {
     public void setMedicosFiltrados(List<Medico> medicosFiltrados) {
         this.medicosFiltrados = medicosFiltrados;
     }
-
-    public String verTodosMedicos(String especialidade) throws SQLException, NamingException {
-        listaMedicos = medicoDAO.listarMedicosEspecialidade(especialidade);
+    
+    public String verTodosMedicosEspecialidade() throws SQLException, NamingException {
+        listaMedicos = medicoDAO.listarMedicosEspecialidade(this.especialidade);
         return "listaMedicos";
     }
 }

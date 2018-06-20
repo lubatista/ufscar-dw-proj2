@@ -18,9 +18,10 @@
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 2}" action="consultaForm">Agendar Consulta</h:commandLink><br/>
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 2}" action="#{listaConsultas.verConsultasPaciente()}">Listar Constultas Paciente</h:commandLink><br/>
             
-            <h:commandLink action="#">Listar todos os médicos por especialidade</h:commandLink><br/>
+            <h:commandLink action="filtraEspecialidade">Listar todos os médicos por especialidade</h:commandLink><br/>
             <h:commandLink action="#{listaMedicos.verTodosMedicos()}">Ver todos os medicos</h:commandLink><br/>
             
+            <h:commandLink action="login">Login</h:commandLink><br/>
         </h:form>
     </h:body>
 </html>
