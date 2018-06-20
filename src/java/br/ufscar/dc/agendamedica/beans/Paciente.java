@@ -14,7 +14,7 @@ import java.sql.Date;
  */
 public class Paciente implements Serializable{
     private String cpf, nome, senha, telefone;
-    private Integer sexo;
+    private String sexo;
     private String datanasc;
 
     public String getCpf() {
@@ -49,11 +49,11 @@ public class Paciente implements Serializable{
         this.telefone = telefone;
     }
 
-    public Integer getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(Integer sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

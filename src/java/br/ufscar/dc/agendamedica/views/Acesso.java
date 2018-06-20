@@ -83,9 +83,7 @@ public class Acesso implements Serializable{
                 return "index";
             }
 
-        } catch (SQLException ex) {
-            Logger.getLogger(Acesso.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
+        } catch (SQLException | NamingException ex) {
             Logger.getLogger(Acesso.class.getName()).log(Level.SEVERE, null, ex);
         }
         

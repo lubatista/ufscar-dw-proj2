@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
@@ -47,11 +48,13 @@ public class PacienteDAO implements Serializable {
         try {
             SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
             data = new java.sql.Date(format.parse(p.getDatanasc()).getTime());
-        } catch(Exception e) {
+        } catch(ParseException e) {
             e.getStackTrace();
             return null;
         }
         
+        System.out.println(p.getCpf());
+        System.out.println(p.getNome());
         
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(CRIAR_PACIENTE_SQL);) {
@@ -60,7 +63,7 @@ public class PacienteDAO implements Serializable {
             ps.setString(2, p.getNome());
             ps.setString(3, p.getSenha());
             ps.setString(4, p.getTelefone());
-            ps.setInt(5, p.getSexo());
+            ps.setString(5, p.getSexo());
             ps.setDate(6, data);
             ps.execute();
 
@@ -80,7 +83,7 @@ public class PacienteDAO implements Serializable {
                 p.setNome(rs.getString("nome"));
                 p.setSenha(rs.getString("senha"));
                 p.setTelefone(rs.getString("telefone"));
-                p.setSexo(rs.getInt("sexo"));
+                p.setSexo(rs.getString("sexo"));
                 p.setDatanasc(rs.getString("datanasc"));
                 return p;
             }
@@ -100,7 +103,7 @@ public class PacienteDAO implements Serializable {
                 p.setNome(rs.getString("nome"));
                 p.setSenha(rs.getString("senha"));
                 p.setTelefone(rs.getString("telefone"));
-                p.setSexo(rs.getInt("sexo"));
+                p.setSexo(rs.getString("sexo"));
                 p.setDatanasc(rs.getString("datanasc"));
                 return p;
             } catch (Exception e) {

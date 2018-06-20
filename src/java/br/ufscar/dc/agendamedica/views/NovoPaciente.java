@@ -56,8 +56,6 @@ public class NovoPaciente implements Serializable{
     
     public String salvar() {
         try {
-            
-            System.out.println(dadosPaciente.getCpf());
             pacienteDao.gravarPaciente(dadosPaciente);
                  
         } catch (SQLException | NamingException ex) {
