@@ -13,10 +13,10 @@
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="medicoForm">Cadastrar Médico</h:commandLink><br/>
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="pacienteForm">Cadastrar Paciente</h:commandLink><br/>
             
-            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 1}" action="#">Listar Constultas Médico</h:commandLink><br/>
+            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 1}" action="#{listaConsultas.verConsultasMedico()}">Listar Constultas Médico</h:commandLink><br/>
             
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 2}" action="consultaForm">Agendar Consulta</h:commandLink><br/>
-            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 2}" action="#">Listar Constultas Paciente</h:commandLink><br/>
+            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 2}" action="#{listaConsultas.verConsultasPaciente()}">Listar Constultas Paciente</h:commandLink><br/>
             
             <h:commandLink action="#">Listar todos os médicos por especialidade</h:commandLink><br/>
             <h:commandLink action="#{listaMedicos.verTodosMedicos()}">Ver todos os medicos</h:commandLink><br/>

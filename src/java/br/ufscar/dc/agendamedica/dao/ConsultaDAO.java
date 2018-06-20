@@ -6,14 +6,19 @@
 package br.ufscar.dc.agendamedica.dao;
 
 import br.ufscar.dc.agendamedica.beans.Consulta;
+import br.ufscar.dc.agendamedica.beans.Medico;
+import br.ufscar.dc.agendamedica.beans.Paciente;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import javax.annotation.Resource;
 import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
@@ -23,6 +28,13 @@ import javax.sql.DataSource;
  */
 @RequestScoped
 public class ConsultaDAO implements Serializable {
+    
+    @Inject 
+    MedicoDAO medicoDao;
+    
+    @Inject 
+    PacienteDAO pacienteDao;
+    
     private final static String CRIAR_CONSULTA_SQL = "insert into consulta"
             + " (crm, cpf, data)"
             + " values (?,?,?)";
@@ -120,6 +132,53 @@ public class ConsultaDAO implements Serializable {
             return null;
         }
     }
+    
+    public List<Consulta> listarConsultaPaciente(String cpf) throws SQLException, NamingException {
+        List<Consulta> ret = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(BUSCAR_CONSULTA_PACIENTE_SQL)) {
+
+            ps.setString(1, cpf);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Medico medico = medicoDao.buscarMedico(rs.getString("crm"));
+                    Paciente paciente = pacienteDao.buscarPaciente(rs.getString("cpf"));
+                    
+                    Consulta c = new Consulta();
+                    c.setData(rs.getString("data"));
+                    c.setMedico(medico);
+                    c.setPaciente(paciente);
+                    ret.add(c);
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public List<Consulta> listarConsultaMedico(String crm) throws SQLException, NamingException {
+        List<Consulta> ret = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(BUSCAR_CONSULTA_MEDICO_SQL)) {
+
+            ps.setString(1, crm);
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Medico medico = medicoDao.buscarMedico(rs.getString("crm"));
+                    Paciente paciente = pacienteDao.buscarPaciente(rs.getString("cpf"));
+                    
+                    Consulta c = new Consulta();
+                    c.setData(rs.getString("data"));
+                    c.setMedico(medico);
+                    c.setPaciente(paciente);
+                    ret.add(c);
+                }
+            }
+        }
+        return ret;
+    }
+    
     /*
     public List<NovaConsultaFormBean> buscarConsultaMedico(String crm) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Agenda Médica</title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:dataTable id="consultas" 
+                         var="consulta" 
+                         value="#{listaConsultas.listaConsulta}" 
+                         emptyMessage="Nenhuma consulta encontrada">
+                              
+                <p:column headerText="Data" >
+                    <h:outputText value="#{consulta.data}" />
+                </p:column>
+
+                <p:column headerText="CRM" >
+                    <h:outputText value="#{consulta.medico.crm}" />
+                </p:column>
+
+                <p:column headerText="Médico" >
+                     <h:outputText value="#{consulta.medico.nome}" />
+                </p:column>
+                
+                <p:column headerText="CPF" >
+                    <h:outputText value="#{consulta.paciente.cpf}" />
+                </p:column>
+                
+                <p:column headerText="Paciente" >
+                    <h:outputText value="#{consulta.paciente.nome}" />
+                </p:column>
+
+            </p:dataTable>  
+        </h:form>
+    </h:body>
+</html>
