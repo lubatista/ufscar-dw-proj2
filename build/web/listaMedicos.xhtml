@@ -13,25 +13,18 @@
             <p:dataTable id="medicos" 
                          var="medico" 
                          value="#{listaMedicos.listaMedicos}" 
-                         widgetVar="medicosTable"
-                         emptyMessage="Nenhum medico encontrado"
-                         filteredValue="#{listaMedicos.medicosFiltrados}">
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="CRM" />
-                    </f:facet>
-                    <h:outputText id="crm" value="#{medico.crm}" />
+                         emptyMessage="Nenhum medico encontrado">
+                              
+                <p:column headerText="CRM" >
+                    <h:outputText value="#{medico.crm}" />
                 </p:column>
 
                 <p:column headerText="Nome" >
                     <h:outputText value="#{medico.nome}" />
                 </p:column>
 
-                <p:column>
-                    <f:facet name="header">
-                        <h:outputText value="Especialidade" />
-                    </f:facet>
-                    <h:outputText id="especialidade" value="#{medico.especialidade}" />
+                 <p:column headerText="Nome" >
+                    <h:outputText value="#{medico.especialidade}" />
                 </p:column>
 
             </p:dataTable>  

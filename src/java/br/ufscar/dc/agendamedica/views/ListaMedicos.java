@@ -50,9 +50,8 @@ public class ListaMedicos implements Serializable {
         this.medicosFiltrados = medicosFiltrados;
     }
 
-    /* public String verTodosMedicosEspecialidade(String especialidade) throws SQLException, NamingException {
-
+    public String verTodosMedicos(String especialidade) throws SQLException, NamingException {
         listaMedicos = medicoDAO.listarMedicosEspecialidade(especialidade);
         return "listaMedicos";
-    }*/
+    }
 }
