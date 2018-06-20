@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Agenda Médica</title>
+        <h:outputStylesheet library="css" name="estilo.css"/>
+    </h:head>
+    <h:body>
+        <h1>Novo Médico</h1>
+        <hr />
+        <h:form>
+            Dados do Médico:<br/>
+            CRM:
+            <h:inputText id="crm" label="Crm" required="true" value="#{novoMedico.dadosMedico.crm}" />
+            <h:message for="crm"/>
+            <br/>
+            
+            Nome:
+            <h:inputText id="nome" label="Nome" required="true" value="#{novoMedico.dadosMedico.nome}" />
+            <h:message for="nome"/>
+            <br/>
+            
+            Especialidade:
+            <h:inputText id="especialidade" label="especialidade" required="true" value="#{novoMedico.dadosMedico.especialidade}" />
+            <h:message for="especialidade"/>
+            <br/>
+            
+            Senha
+            <h:inputText id="senha" label="Senha" required="true" value="#{novoMedico.dadosMedico.senha}" />
+            <h:message for="senha"/>
+            <br/>
+
+            <h:commandButton id="submit" value="Submit" action="#{novoMedico.salvar()}" />
+        </h:form>    
+    </h:body>
+</html>

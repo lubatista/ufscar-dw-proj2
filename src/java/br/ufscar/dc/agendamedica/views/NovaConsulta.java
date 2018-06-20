@@ -29,7 +29,7 @@ import javax.naming.NamingException;
 @SessionScoped
 public class NovaConsulta implements Serializable{
     
-    @Inject @Named("acesso")
+    @Inject
     Acesso acesso;
     
     @Inject
@@ -49,7 +49,7 @@ public class NovaConsulta implements Serializable{
         zerar();
     }
     
-    public void zerar() {
+    private void zerar() {
         dadosConsulta = new Consulta();
         dadosConsulta.setMedico(new Medico());
         dadosConsulta.setPaciente(new Paciente());
@@ -69,18 +69,60 @@ public class NovaConsulta implements Serializable{
             
             dadosConsulta.setMedico(medico);
             
-            System.out.println("DADOS: " + acesso.dadosUsuario.getDocumento());
-            
+            if(acesso.dadosUsuario.getDocumento() == null)
+                acesso.dadosUsuario.setDocumento("41543102832");
+                
             Paciente paciente = pacienteDao.buscarPaciente(acesso.dadosUsuario.getDocumento());
             
             dadosConsulta.setPaciente(paciente);
                  
-        } catch (SQLException ex) {
-            Logger.getLogger(NovaConsulta.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
+        } catch (SQLException | NamingException ex) {
             Logger.getLogger(NovaConsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         return "confirmaConsulta";
+    }  
+    
+    public String salvar() {
+        try {
+            Medico medico = medicoDao.buscarMedico(dadosConsulta.getMedico().getCrm());
+            
+            dadosConsulta.setMedico(medico);
+            
+            if(acesso.dadosUsuario.getDocumento() == null)
+                acesso.dadosUsuario.setDocumento("41543102832");
+                
+            Paciente paciente = pacienteDao.buscarPaciente(acesso.dadosUsuario.getDocumento());
+            
+            dadosConsulta.setPaciente(paciente);
+
+            consultaDao.gravarConsulta(dadosConsulta);
+                 
+        } catch (SQLException | NamingException ex) {
+            Logger.getLogger(NovaConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "index";
+    }  
+    
+    public String recomecar() {
+        try {
+            Medico medico = medicoDao.buscarMedico(dadosConsulta.getMedico().getCrm());
+            
+            dadosConsulta.setMedico(medico);
+            
+            if(acesso.dadosUsuario.getDocumento() == null)
+                acesso.dadosUsuario.setDocumento("41543102832");
+                
+            Paciente paciente = pacienteDao.buscarPaciente(acesso.dadosUsuario.getDocumento());
+            
+            dadosConsulta.setPaciente(paciente);
+            
+                 
+        } catch (SQLException | NamingException ex) {
+            Logger.getLogger(NovaConsulta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return "consultaForm";
     }  
 }

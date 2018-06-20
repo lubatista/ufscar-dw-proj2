@@ -10,8 +10,8 @@
         <h1>Sistema de Agendamento Médico</h1>
         <p>Opções do sistema</p>
         <h:form>
-            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="#">Cadastrar Médico</h:commandLink><br/>
-            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="#">Cadastrar Paciente</h:commandLink><br/>
+            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="medicoForm">Cadastrar Médico</h:commandLink><br/>
+            <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 0}" action="pacienteForm">Cadastrar Paciente</h:commandLink><br/>
             
             <h:commandLink rendered="#{acesso.dadosUsuario.tipo eq 1}" action="#">Listar Constultas Médico</h:commandLink><br/>
             
