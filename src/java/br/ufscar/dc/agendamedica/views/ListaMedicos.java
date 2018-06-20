@@ -10,9 +10,6 @@ import br.ufscar.dc.agendamedica.dao.MedicoDAO;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -31,21 +28,7 @@ public class ListaMedicos implements Serializable {
     MedicoDAO medicoDAO;
 
     private List<Medico> medicosFiltrados;
-    
-    private List<String> especialidade;
-
-    Medico medico;
-
-    
-    @PostConstruct
-    public void init() {
-        try {
-            especialidade = medicoDAO.listarTodasEspecialidade();
-        } catch (SQLException ex) {
-            Logger.getLogger(ListaMedicos.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
+        
     public List<Medico> getListaMedicos() {
         return listaMedicos;
     }
@@ -67,10 +50,6 @@ public class ListaMedicos implements Serializable {
         this.medicosFiltrados = medicosFiltrados;
     }
 
-    public List<String> getEspecialidades() {
-        return especialidade;
-    }
-    
     /* public String verTodosMedicosEspecialidade(String especialidade) throws SQLException, NamingException {
 
         listaMedicos = medicoDAO.listarMedicosEspecialidade(especialidade);
